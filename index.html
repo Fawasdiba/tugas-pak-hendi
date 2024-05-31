@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>INPUT DATA KE SPREAD SHEET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #e3f2fd; /* Light blue background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #form-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border: 2px solid #ffeb3b; /* Yellow border */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px #ffeb3b; /* Yellow shadow */
+            box-sizing: border-box;
+        }
+
+        #form-container h3 {
+            text-align: center;
+            color: #1e88e5; /* Medium blue text */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #1e88e5; /* Medium blue text */
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #1e88e5; /* Medium blue border */
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #ffffff; /* White background */
+            color: #1e88e5; /* Medium blue text */
+        }
+
+        input[type="submit"] {
+            background-color: #1e88e5; /* Medium blue button */
+            color: #ffffff; /* White text */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1565c0; /* Darker blue on hover */
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #ffeb3b; /* Yellow button */
+            color: #1e88e5; /* Medium blue text */
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .custom-file-upload input[type="file"] {
+            display: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #1e88e5; /* Medium blue text */
+            background-color: #ffeb3b; /* Yellow button */
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #fdd835; /* Darker yellow on hover */
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            background-color: #fbc02d; /* Even darker yellow on active */
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="form-container">
+        <h3>INPUT DATA KE SPREAD SHEET</h3>
+        <form action="https://script.google.com/macros/s/AKfycbxDu_BmqixIin7d-SQV3DYq3LF0leCKUBQaXwCv_COJ7_IckvUDPoFCLcXfpZ5DmpJ_Mg/exec"
+            method="post" enctype="multipart/form-data">
+            <label for="no">Nomor</label>
+            <input type="number" id="no" name="no" required>
+
+            <label for="nama">Nama Kegiatan:</label>
+            <input type="text" id="nama" name="nama" required>
+            <label for="jenis">Pilih Jenis Kegiatan:</label>
+            <select name="jenis" id="jenis" required>
+                <option></option>
+                <option value="kbm">KBM </option>
+                <option value="nonkbm">Non KBM</option>
+            </select>
+            <br>
+
+            <label for="kelas">Kelas</label>
+            <input type="text" id="kelas" name="kelas">
+
+            <label for="tgl_kgt">Tanggal kegiatan:</label>
+            <input type="date" id="tgl_kgt" name="tgl_kgt" required>
+            <br>
+
+            <label for="uraian">Uraian Kegiatan:</label>
+            <textarea cols="60" rows="10" type="text" id="uraian" name="uraian" required></textarea><br>
+
+            <label for="target">Target Capaian:</label>
+            <textarea cols="60" rows="10" type="text" id="target" name="target" required></textarea><br><br>
+
+            <label for="buktis">Bukti Kegiatan:</label>
+            <input type="file" name="buktis" id="buktis" accept="image/*">
+            <input type="hidden" id="buktisEnc" name="buktisEnc">
+            <script>
+                document.getElementById('buktis').addEventListener('change', function (event) {
+                    var file = event.target.files[0];
+                    var reader = new FileReader();
+                    reader.onloadend = function () {
+                        document.getElementById('buktisEnc').value = reader.result.split(',')[1];
+                    }
+                    reader.readAsDataURL(file);
+                });
+            </script>
+            <input type="submit" value="Simpan Data">
+        </form>
+    </div>
+</body>
+
+</html>
